@@ -17,6 +17,6 @@ This gets the current state of available coins.
 This helps to configure coins as needed.
 
 ```http://localhost:8080/change/5?allowLeastCoins=false```
-This provides the change for the given avalid amount.Set allowLeastCoins to ```true``` to get the most coins.
+This provides the change for the given avalid amount.Set ```allowLeastCoins``` to ```true``` to get the most coins.
 
 
