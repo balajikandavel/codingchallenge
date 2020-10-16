@@ -1,0 +1,182 @@
+{
+	"info": {
+		"_postman_id": "ac96423c-b5a7-44cb-a141-5e40355e97c4",
+		"name": "ADP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getCoins",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "bar",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "foo",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/coins",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"coins"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getChange",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "bar",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "foo",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/change/100?allowLeastCoins=true",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"change",
+						"100"
+					],
+					"query": [
+						{
+							"key": "allowLeastCoins",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateCoins",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "bar",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "foo",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"coinValue\": 0.01,\n        \"count\": 50\n    },\n    {\n        \"coinValue\": 0.05,\n        \"count\": 50\n    },\n    {\n        \"coinValue\": 0.1,\n        \"count\": 50\n    },\n    {\n        \"coinValue\": 0.25,\n        \"count\": 50\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/coins",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"coins"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
