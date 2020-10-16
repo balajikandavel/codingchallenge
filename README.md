@@ -1,4 +1,4 @@
-# codingchallenge
+# Coding Challenge
 
 To run the app go to Terminal and run
 
