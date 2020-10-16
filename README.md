@@ -4,7 +4,7 @@ To run the app go to Terminal and run
 
 ```mvn spring-boot:run```
 
-The program runs when you hit http://server:port (localhost:8080)
+The below endpoints are available when you hit http://server:port (localhost:8080)
 
 Please open the docs folder and use the postman collection to validate the services.
 
@@ -20,4 +20,5 @@ This helps to configure coins as needed.
 This provides the change for the given avalid amount.Set ```allowLeastCoins``` to ```true``` to get the most coins.
 Whenever there is not enough coins, you will get a message as part of response  ```Please Insert more coins!!```
 
-
+## monitoring
+YOu can monitor the health of the application using ```http://localhost:8080/actuator/health```
