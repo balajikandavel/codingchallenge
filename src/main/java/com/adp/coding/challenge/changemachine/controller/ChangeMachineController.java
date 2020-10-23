@@ -39,11 +39,11 @@ public class ChangeMachineController {
 	}
 
 	@GetMapping(value = "/change/{cash}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> getChange(@PathVariable Double cash,
+	public ResponseEntity<?> getChange(@PathVariable Double cash,
 			@RequestParam(name = "allowLeastCoins") Boolean allowLeastCoins) {
 		try {
-			String response = changeMachineService.getChange(cash, allowLeastCoins);
-			logger.info(response);
+			List<Coin> response = changeMachineService.getChange(cash, allowLeastCoins);
+
 			return new ResponseEntity<>(response, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);

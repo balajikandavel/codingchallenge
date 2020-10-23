@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -28,6 +30,7 @@ public class ChangeMachineRepository {
 		return jdbcTemplate.query("select value,count from coin order by value desc", new CoinRowMapper());
 	}
 
+	@Transactional
 	public void updateCoins(List<Coin> coin) {
 		for (Coin c : coin) {
 			jdbcTemplate.update("update coin " + " set count = ? " + " where value = ?",

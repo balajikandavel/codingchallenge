@@ -7,7 +7,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.adp.coding.challenge.changemachine.model.Cash;
 import com.adp.coding.challenge.changemachine.model.Coin;
 import com.adp.coding.challenge.changemachine.processor.ChangeMachineProcessor;
 import com.adp.coding.challenge.changemachine.repository.ChangeMachineRepository;
@@ -19,7 +18,6 @@ public class ChangeMachineService {
 
 	@Autowired
 	ChangeMachineRepository coinRepository;
-
 	@Autowired
 	ChangeMachineProcessor changeMachineProcessor;
 
@@ -38,7 +36,7 @@ public class ChangeMachineService {
 		coinRepository.updateCoins(coins);
 	}
 
-	public String getChange(Double amount, Boolean allowLeastCoins) throws IllegalArgumentException {
+	public List<Coin> getChange(Double amount, Boolean allowLeastCoins) throws Exception {
 
 		Gson gson = new Gson();
 		List<Coin> coinsList = coinRepository.getAvailableCoins();
@@ -51,10 +49,11 @@ public class ChangeMachineService {
 
 		if (allowLeastCoins.booleanValue())
 			Collections.sort(coinsList, Collections.reverseOrder());
+		// coinsList.stream().sorted(Coin::compareTo);
 
-		Cash coinsForCash = changeMachineProcessor.calculateChange(coinsList, amount);
+		List<Coin> coins = changeMachineProcessor.findCoins(coinsList, amount);
 
-		return gson.toJson(coinsForCash);
+		return coins;
 
 	}
 
