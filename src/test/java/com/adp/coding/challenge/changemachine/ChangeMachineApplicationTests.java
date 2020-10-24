@@ -12,7 +12,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.adp.coding.challenge.changemachine.model.Cash;
 import com.adp.coding.challenge.changemachine.model.Coin;
 import com.adp.coding.challenge.changemachine.processor.ChangeMachineProcessor;
 import com.adp.coding.challenge.changemachine.repository.ChangeMachineRepository;
@@ -23,12 +22,12 @@ import com.adp.coding.challenge.changemachine.service.ChangeMachineService;
 class ChangeMachineApplicationTests {
 
 	@Mock
-	ChangeMachineRepository changeMachineRepo = new ChangeMachineRepository();
+	ChangeMachineRepository changeMachineRepo;
 
 	@InjectMocks
-	ChangeMachineService changeMachineService = new ChangeMachineService();
+	ChangeMachineService changeMachineService;
 
-	ChangeMachineProcessor changeMachineProcessor;// = new ChangeMachineProcessor(changeMachineRepo);
+	ChangeMachineProcessor changeMachineProcessor;
 
 	@Test
 	void givenWrongAmount_thenThrowError() throws Exception {
@@ -48,26 +47,6 @@ class ChangeMachineApplicationTests {
 			assertThat(e.getMessage()).contains(expectedMessage);
 
 		}
-
-	}
-
-	@Test
-	void givenAmount_WhenGetChange_thenProvideChange() throws Exception {
-
-		List<Coin> coinList = new ArrayList<Coin>();
-		Coin coin1 = new Coin(0.25, 100.0);
-		Coin coin2 = new Coin(0.5, 100.0);
-		coinList.add(coin1);
-		coinList.add(coin2);
-
-		Cash coinsForCash = new Cash(0.0, coinList);
-
-		Mockito.when(changeMachineRepo.getAvailableCoins()).thenReturn(coinList);
-
-//		List<Coin> cash = changeMachineProcessor.calculateChange(coinList, 5.0);
-//
-//		assertThat(cash.getCoins().get(0).getCount()).isEqualTo(20);
-//		assertThat(cash.getCoins().get(0).getCoinValue()).isEqualTo(.25);
 
 	}
 

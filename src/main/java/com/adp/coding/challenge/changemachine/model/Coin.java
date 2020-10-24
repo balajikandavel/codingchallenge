@@ -2,6 +2,13 @@ package com.adp.coding.challenge.changemachine.model;
 
 import java.io.Serializable;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
 public class Coin implements Comparable<Coin>, Serializable {
 
 	private Double coinValue;
@@ -9,22 +16,6 @@ public class Coin implements Comparable<Coin>, Serializable {
 
 	public Coin(Double coinValue, Double count) {
 		this.coinValue = coinValue;
-		this.count = count;
-	}
-
-	public Double getCoinValue() {
-		return coinValue;
-	}
-
-	public void setCoinValue(Double coinValue) {
-		this.coinValue = coinValue;
-	}
-
-	public Double getCount() {
-		return count;
-	}
-
-	public void setCount(Double count) {
 		this.count = count;
 	}
 
