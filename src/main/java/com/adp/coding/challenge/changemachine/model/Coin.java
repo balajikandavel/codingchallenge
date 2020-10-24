@@ -1,7 +1,5 @@
 package com.adp.coding.challenge.changemachine.model;
 
-import java.io.Serializable;
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -9,7 +7,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Coin implements Comparable<Coin>, Serializable {
+public class Coin implements Comparable<Coin> {
 
 	private Double coinValue;
 	private Double count;

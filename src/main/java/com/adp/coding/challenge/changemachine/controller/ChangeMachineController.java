@@ -38,7 +38,7 @@ public class ChangeMachineController {
 		changeMachineService.updateCoins(coins);
 	}
 
-	@GetMapping(value = "/change/{cash}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/change/{cash}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> getChange(@PathVariable Double cash,
 			@RequestParam(name = "allowLeastCoins") Boolean allowLeastCoins) {
 		try {
