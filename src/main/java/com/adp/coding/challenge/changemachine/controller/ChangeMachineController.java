@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.adp.coding.challenge.changemachine.exception.ChangeMachineException;
 import com.adp.coding.challenge.changemachine.model.Coin;
+import com.adp.coding.challenge.changemachine.model.ErrorTO;
 import com.adp.coding.challenge.changemachine.service.ChangeMachineService;
 
 @RestController
@@ -34,8 +36,9 @@ public class ChangeMachineController {
 
 	@PostMapping("/coins")
 	public void updateCurrentCoins(@RequestBody List<Coin> coins) throws Exception {
-
+		logger.info(coins.toString());
 		changeMachineService.updateCoins(coins);
+
 	}
 
 	@PostMapping(value = "/change/{cash}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -43,8 +46,10 @@ public class ChangeMachineController {
 			@RequestParam(name = "allowLeastCoins") Boolean allowLeastCoins) {
 		try {
 			List<Coin> response = changeMachineService.getChange(cash, allowLeastCoins);
-
+			logger.info(response.toString());
 			return new ResponseEntity<>(response, HttpStatus.OK);
+		} catch (ChangeMachineException e) {
+			return new ResponseEntity<ErrorTO>(e.getError(), HttpStatus.BAD_REQUEST);
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}

@@ -6,7 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.adp.coding.challenge.changemachine.exception.ChangeMachineException;
 import com.adp.coding.challenge.changemachine.model.Coin;
+import com.adp.coding.challenge.changemachine.model.ErrorTO;
 import com.adp.coding.challenge.changemachine.repository.ChangeMachineRepository;
 import com.adp.coding.challenge.changemachine.utils.WebConstants;
 
@@ -44,7 +46,7 @@ public class ChangeMachineProcessor {
 			}
 		}
 		if (pendingAmount > 0) {
-			throw new Exception(WebConstants.PENDING_AMOUNT_MESSAGE);
+			throw new ChangeMachineException(new ErrorTO(WebConstants.PENDING_AMOUNT_MESSAGE));
 		}
 
 		if (pendingAmount == 0) {

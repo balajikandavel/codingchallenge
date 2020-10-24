@@ -7,7 +7,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.adp.coding.challenge.changemachine.exception.ChangeMachineException;
 import com.adp.coding.challenge.changemachine.model.Coin;
+import com.adp.coding.challenge.changemachine.model.ErrorTO;
 import com.adp.coding.challenge.changemachine.processor.ChangeMachineProcessor;
 import com.adp.coding.challenge.changemachine.repository.ChangeMachineRepository;
 import com.adp.coding.challenge.changemachine.utils.WebConstants;
@@ -36,7 +38,7 @@ public class ChangeMachineService {
 		coinRepository.updateCoins(coins);
 	}
 
-	public List<Coin> getChange(Double amount, Boolean allowLeastCoins) throws Exception {
+	public List<Coin> getChange(Double amount, Boolean allowLeastCoins) throws ChangeMachineException, Exception {
 
 		List<Coin> coinsList = coinRepository.getAvailableCoins();
 
@@ -44,7 +46,7 @@ public class ChangeMachineService {
 				.findAny();
 
 		if (!cashAmount.isPresent())
-			throw new IllegalArgumentException(WebConstants.AMOUNT_NOT_PRESENT_ERROR);
+			throw new ChangeMachineException(new ErrorTO(WebConstants.AMOUNT_NOT_PRESENT_ERROR));
 
 		if (allowLeastCoins.booleanValue())
 			Collections.sort(coinsList, Collections.reverseOrder());
