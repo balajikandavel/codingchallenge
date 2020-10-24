@@ -33,7 +33,7 @@ public class ChangeMachineController {
 	}
 
 	@PostMapping("/coins")
-	public void updateCurrentCoins(@RequestBody List<Coin> coins) {
+	public void updateCurrentCoins(@RequestBody List<Coin> coins) throws Exception {
 
 		changeMachineService.updateCoins(coins);
 	}

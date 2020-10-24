@@ -13,7 +13,6 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.adp.coding.challenge.changemachine.model.Coin;
-import com.adp.coding.challenge.changemachine.processor.ChangeMachineProcessor;
 import com.adp.coding.challenge.changemachine.repository.ChangeMachineRepository;
 import com.adp.coding.challenge.changemachine.service.ChangeMachineService;
 
@@ -27,8 +26,6 @@ class ChangeMachineApplicationTests {
 	@InjectMocks
 	ChangeMachineService changeMachineService;
 
-	ChangeMachineProcessor changeMachineProcessor;
-
 	@Test
 	void givenWrongAmount_thenThrowError() throws Exception {
 
@@ -40,12 +37,11 @@ class ChangeMachineApplicationTests {
 
 		Mockito.when(changeMachineRepo.getAvailableCoins()).thenReturn(response);
 
-		String expectedMessage = "Given amount is not valid";
+		String expectedMessage = "Please Insert valid Cash!!";
 		try {
 			changeMachineService.getChange(23.0, false);
 		} catch (IllegalArgumentException e) {
 			assertThat(e.getMessage()).contains(expectedMessage);
-
 		}
 
 	}

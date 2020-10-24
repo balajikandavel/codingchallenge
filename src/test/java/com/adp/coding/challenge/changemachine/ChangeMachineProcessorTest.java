@@ -11,7 +11,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.adp.coding.challenge.changemachine.model.Coin;
 import com.adp.coding.challenge.changemachine.processor.ChangeMachineProcessor;
@@ -27,11 +26,8 @@ class ChangeMachineProcessorTest {
 	@InjectMocks
 	ChangeMachineProcessor changeMachineProcessor;
 
-	@Mock
-	JdbcTemplate jdbcTemplate;
-
 	@Test
-	void givenAmount_UpdateCoins_thenFindChange() throws Exception {
+	void givenAmount_updateCoins_thenFindChange_1() throws Exception {
 
 		List<Coin> coinList = new ArrayList<Coin>();
 		Coin coin1 = new Coin(0.25, 100.0);
@@ -44,6 +40,22 @@ class ChangeMachineProcessorTest {
 		List<Coin> coinResponse = changeMachineProcessor.findCoins(coinList, 5.0);
 
 		assertThat(coinResponse.toString()).contains("[Coin(coinValue=0.25, count=20.0)]");
+	}
+
+	@Test
+	void givenAmount_updateCoins_thenFindChange_2() throws Exception {
+
+		List<Coin> coinList = new ArrayList<Coin>();
+		Coin coin1 = new Coin(0.25, 100.0);
+		Coin coin2 = new Coin(0.5, 100.0);
+		coinList.add(coin1);
+		coinList.add(coin2);
+
+		lenient().doNothing().when(changeMachineRepo).updateCoins(coinList);
+
+		List<Coin> coinResponse = changeMachineProcessor.findCoins(coinList, 25.0);
+
+		assertThat(coinResponse.toString()).contains("[Coin(coinValue=0.25, count=100.0)]");
 	}
 
 	@Test

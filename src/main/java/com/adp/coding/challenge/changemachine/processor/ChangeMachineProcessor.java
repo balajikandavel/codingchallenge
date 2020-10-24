@@ -23,6 +23,7 @@ public class ChangeMachineProcessor {
 		Double pendingAmount = null;
 		Coin remainingCoins;
 		Coin changeToReturn;
+
 		for (Coin coin : coinList) {
 			pendingAmount = amount - (coin.getCount() * coin.getCoinValue());
 

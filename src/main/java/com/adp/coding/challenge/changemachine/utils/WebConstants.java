@@ -9,6 +9,6 @@ public class WebConstants {
 
 	public static final String PENDING_AMOUNT_MESSAGE = "Not enough change!!";
 
-	public static final String AMOUNT_NOT_PRESENT_ERROR = "Please Insert more coins!!";
+	public static final String AMOUNT_NOT_PRESENT_ERROR = "Please Insert valid Cash!!";
 
 }

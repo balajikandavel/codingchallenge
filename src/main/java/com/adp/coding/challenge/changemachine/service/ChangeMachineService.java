@@ -31,14 +31,13 @@ public class ChangeMachineService {
 
 	}
 
-	public void updateCoins(List<Coin> coins) {
+	public void updateCoins(List<Coin> coins) throws Exception {
 
 		coinRepository.updateCoins(coins);
 	}
 
 	public List<Coin> getChange(Double amount, Boolean allowLeastCoins) throws Exception {
 
-		Gson gson = new Gson();
 		List<Coin> coinsList = coinRepository.getAvailableCoins();
 
 		Optional<Integer> cashAmount = WebConstants.cashList.stream().filter(a -> a.equals(amount.intValue()))
@@ -49,7 +48,6 @@ public class ChangeMachineService {
 
 		if (allowLeastCoins.booleanValue())
 			Collections.sort(coinsList, Collections.reverseOrder());
-		// coinsList.stream().sorted(Coin::compareTo);
 
 		List<Coin> coins = changeMachineProcessor.findCoins(coinsList, amount);
 
